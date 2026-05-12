@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
+import {
   ArrowRight, BrainCircuit, Terminal, Activity,
   Boxes, GitMerge, FileCode2, Database, Mic, Layers,
-  ChevronRight, Sparkles, Cpu, Blocks, ArrowUpRight
+  ChevronRight, Sparkles, Cpu, Blocks, ArrowUpRight,
+  Network, Search, Code, Shield, Box, Server, CheckCircle, Target, PenTool
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════
@@ -128,48 +129,169 @@ export default function LandingPage() {
             {/* Grid pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px] opacity-50" />
             
-            {/* Unified SVG Canvas for perfect scaling and attachment */}
-            <svg viewBox="0 0 1000 600" className="absolute inset-0 w-full h-full drop-shadow-2xl">
+            {/* Massive Complex Workflow Graph matching user reference */}
+            <svg viewBox="0 0 1600 900" className="absolute inset-0 w-full h-full drop-shadow-2xl">
               <defs>
-                <linearGradient id="glow-orange" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#FFAA00" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#FFAA00" stopOpacity="0.1"/>
-                </linearGradient>
-                <linearGradient id="glow-green" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#00FF88" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#00FF88" stopOpacity="0.1"/>
-                </linearGradient>
+                <linearGradient id="gradient-A78BFA" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#A78BFA" stopOpacity="0.8"/><stop offset="100%" stopColor="#A78BFA" stopOpacity="0.1"/></linearGradient>
+                <linearGradient id="gradient-FFAA00" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#FFAA00" stopOpacity="0.8"/><stop offset="100%" stopColor="#FFAA00" stopOpacity="0.1"/></linearGradient>
+                <linearGradient id="gradient-EC4899" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#EC4899" stopOpacity="0.8"/><stop offset="100%" stopColor="#EC4899" stopOpacity="0.1"/></linearGradient>
+                <linearGradient id="gradient-00FF88" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#00FF88" stopOpacity="0.8"/><stop offset="100%" stopColor="#00FF88" stopOpacity="0.1"/></linearGradient>
+                <linearGradient id="gradient-4488FF" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#4488FF" stopOpacity="0.8"/><stop offset="100%" stopColor="#4488FF" stopOpacity="0.1"/></linearGradient>
+                <linearGradient id="gradient-10B981" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#10B981" stopOpacity="0.8"/><stop offset="100%" stopColor="#10B981" stopOpacity="0.1"/></linearGradient>
               </defs>
-              
-              {/* Fake SVG Edges perfectly attached to Node boundaries */}
-              <path 
-                d="M 356 160 C 480 160, 480 140, 600 140" 
-                stroke="url(#glow-orange)" 
-                strokeWidth="2" 
-                fill="none" 
-                strokeDasharray="6 6" 
-                className="animate-[dash_20s_linear_infinite]" 
-              />
-              <path 
-                d="M 406 460 C 530 460, 530 430, 650 430" 
-                stroke="url(#glow-green)" 
-                strokeWidth="2" 
-                fill="none" 
-              />
 
-              {/* Fake Nodes embedded as foreignObjects */}
-              <foreignObject x="100" y="90" width="256" height="140">
-                <NodeCard title="Research Agent" model="Sonar Pro" color="#FFAA00" streaming />
+              {/* Central Orchestrator Radial Glow */}
+              <circle cx="800" cy="400" r="120" fill="none" stroke="#4488FF" strokeWidth="1" strokeDasharray="4 8" className="animate-[spin_20s_linear_infinite]" opacity="0.5" />
+              <circle cx="800" cy="400" r="160" fill="none" stroke="#4488FF" strokeWidth="1" strokeDasharray="2 12" className="animate-[spin_30s_reverse_linear_infinite]" opacity="0.3" />
+
+              {/* Connections */}
+              {/* Goal to Research & UI */}
+              <Connection start={[290, 150]} end={[380, 150]} color="#A78BFA" dashed />
+              <Connection start={[290, 150]} end={[100, 320]} color="#EC4899" />
+              
+              {/* Research to Orchestrator & Data Analyzer */}
+              <Connection start={[620, 150]} end={[800, 240]} color="#FFAA00" dashed />
+              <Connection start={[620, 120]} end={[700, 120]} color="#FFAA00" />
+              
+              {/* Data Analyzer to Strategy */}
+              <Connection start={[940, 120]} end={[1000, 150]} color="#A78BFA" />
+              
+              {/* Strategy to Orchestrator & PRD */}
+              <Connection start={[1240, 150]} end={[1300, 150]} color="#EC4899" />
+              <Connection start={[1050, 230]} end={[880, 290]} color="#EC4899" />
+
+              {/* UI/UX to Orchestrator */}
+              <Connection start={[290, 430]} end={[660, 400]} color="#EC4899" />
+
+              {/* Orchestrator to Code Architect & Database & DevOps & QA */}
+              <Connection start={[940, 400]} end={[1000, 400]} color="#00FF88" dashed />
+              <Connection start={[700, 560]} end={[540, 600]} color="#10B981" />
+              <Connection start={[800, 560]} end={[720, 680]} color="#4488FF" dashed />
+              <Connection start={[940, 520]} end={[1000, 600]} color="#FFAA00" />
+
+              {/* Code Architect to Code Generator */}
+              <Connection start={[1240, 400]} end={[1300, 400]} color="#00FF88" />
+
+              {/* Code Generator to Deployer */}
+              <Connection start={[1420, 560]} end={[1380, 640]} color="#00FF88" dashed />
+
+              {/* QA to Deployer */}
+              <Connection start={[1240, 650]} end={[1300, 650]} color="#FFAA00" />
+
+
+              {/* ── NODES ── */}
+              
+              {/* Top Left */}
+              <foreignObject x="50" y="50" width="240" height="200">
+                <AdvancedNode icon={Target} title="Goal / Input" model="User" color="#A78BFA" desc="Build a full-stack SaaS project for AI workflow automation. Requirements: Auth, Dashboard, Payments, Vercel." stats={[{label:'Priority', val:'High'}, {label:'Complexity', val:'High'}]} pulse />
               </foreignObject>
-              <foreignObject x="600" y="70" width="256" height="140">
-                <NodeCard title="Data Analyzer" model="Claude Opus" color="#A78BFA" connected />
+
+              <foreignObject x="380" y="60" width="240" height="180">
+                <AdvancedNode icon={Search} title="Research Agent" model="Perplexity Pro" color="#FFAA00" status="Live" desc="Gathering market research, competitor analysis, and technical insights..." progress={72} stats={[{label:'Sources', val:'24'}, {label:'Findings', val:'18'}]} />
               </foreignObject>
-              <foreignObject x="150" y="380" width="256" height="160">
-                <NodeCard title="System Terminal" model="DevOps" color="#00FF88" terminal />
+
+              <foreignObject x="700" y="40" width="240" height="160">
+                <AdvancedNode icon={Network} title="Data Analyzer" model="Claude 3 Opus" color="#A78BFA" status="Live" desc="Analyzing data and extracting key opportunities & risks..." progress={64} stats={[{label:'Insights', val:'12'}, {label:'Patterns', val:'7'}]} />
               </foreignObject>
-              <foreignObject x="650" y="360" width="256" height="140">
-                <NodeCard title="Logic Synthesis" model="GPT-4.1" color="#10B981" streaming />
+
+              <foreignObject x="1000" y="60" width="240" height="170">
+                <AdvancedNode icon={BrainCircuit} title="Strategy Synthesizer" model="GPT-4.1" color="#EC4899" status="Live" desc="Synthesizing research into product strategy..." progress={88} stats={[{label:'Strategies', val:'6'}, {label:'Score', val:'9.2/10'}]} />
               </foreignObject>
+
+              <foreignObject x="1300" y="60" width="240" height="170">
+                <AdvancedNode icon={FileCode2} title="PRD Generator" model="Claude 3.5 Sonnet" color="#4488FF" status="Processing" desc="Generating Product Requirements Document..." progress={41} code="prd_v1.0.md\n2.4 KB" />
+              </foreignObject>
+
+              {/* Mid Left */}
+              <foreignObject x="50" y="320" width="240" height="220">
+                <AdvancedNode icon={PenTool} title="UI/UX Designer" model="Gemini 1.5 Pro" color="#EC4899" status="Live" desc="Creating wireframes and visual design system..." progress={67} stats={[{label:'Frames', val:'24'}, {label:'Components', val:'156'}]}>
+                   <div className="flex gap-2 mt-2">
+                     <div className="w-8 h-6 bg-white/10 rounded-sm" />
+                     <div className="w-8 h-6 bg-white/10 rounded-sm" />
+                     <div className="w-8 h-6 bg-white/10 rounded-sm" />
+                     <div className="w-8 h-6 bg-white/10 rounded-sm" />
+                   </div>
+                </AdvancedNode>
+              </foreignObject>
+
+              {/* Center ORCHESTRATOR */}
+              <foreignObject x="660" y="240" width="280" height="320">
+                <AdvancedNode icon={Server} title="Orchestrator Hub" model="VEL AI Core" color="#4488FF" status="Routing" pulse>
+                  <div className="flex flex-col items-center justify-center flex-1 py-4">
+                     <div className="relative w-32 h-32 rounded-full border border-[#4488FF]/30 flex items-center justify-center bg-[#4488FF]/5 shadow-[0_0_40px_rgba(68,136,255,0.2)]">
+                        <div className="absolute w-2 h-2 bg-[#4488FF] rounded-full animate-ping" />
+                        <div className="absolute w-4 h-4 bg-[#4488FF] rounded-full shadow-[0_0_20px_#4488FF]" />
+                        <div className="absolute top-2 left-6 w-1.5 h-1.5 bg-[#00FF88] rounded-full" />
+                        <div className="absolute bottom-4 right-8 w-1 h-1 bg-[#FFAA00] rounded-full" />
+                     </div>
+                     <div className="text-center mt-6">
+                        <div className="text-white/90 text-sm font-semibold">Managing 12 agents</div>
+                        <div className="text-white/50 text-xs">24 active connections</div>
+                     </div>
+                  </div>
+                </AdvancedNode>
+              </foreignObject>
+
+              {/* Mid Right */}
+              <foreignObject x="1000" y="300" width="240" height="200">
+                <AdvancedNode icon={Box} title="Code Architect" model="Claude 3.5 Sonnet" color="#00FF88" status="Live" desc="Designing system architecture and tech stack..." progress={100} stats={[{label:'Components', val:'18'}, {label:'Services', val:'12'}]}>
+                   <div className="w-full h-8 border border-white/10 rounded bg-[#050507] mt-2 flex items-center justify-around px-2">
+                     <div className="w-4 h-4 rounded bg-[#00FF88]/20 border border-[#00FF88]/50" />
+                     <div className="w-8 h-1 bg-white/10" />
+                     <div className="w-4 h-4 rounded bg-[#4488FF]/20 border border-[#4488FF]/50" />
+                   </div>
+                </AdvancedNode>
+              </foreignObject>
+
+              <foreignObject x="1300" y="290" width="240" height="270">
+                <AdvancedNode icon={Code} title="Code Generator" model="GPT-4.1" color="#10B981" status="Live" desc="Generating clean, production-ready code..." progress={68} code={`// API Route\napp.get('/api/workflows', \n  async (req, res) => {\n  const workflows = await \n    db.workflows.find();\n  res.json(workflows);\n})`} stats={[{label:'Files', val:'42'}, {label:'Lines', val:'2,847'}]} />
+              </foreignObject>
+
+              {/* Bottom Row */}
+              <foreignObject x="300" y="550" width="240" height="220">
+                <AdvancedNode icon={Database} title="Database Designer" model="Claude 3 Opus" color="#10B981" status="Live" desc="Designing database schema and relationships..." progress={100} stats={[{label:'Tables', val:'12'}, {label:'Relations', val:'18'}]}>
+                  <div className="flex gap-4 text-[9px] font-mono text-white/50 mt-2">
+                    <div>
+                      <div className="text-white/80 mb-1 border-b border-white/10 pb-1">Users</div>
+                      <div>• id (PK)</div>
+                      <div>• email</div>
+                    </div>
+                    <div>
+                      <div className="text-white/80 mb-1 border-b border-white/10 pb-1">Projects</div>
+                      <div>• id (PK)</div>
+                      <div>• user_id (FK)</div>
+                    </div>
+                  </div>
+                </AdvancedNode>
+              </foreignObject>
+
+              <foreignObject x="600" y="650" width="240" height="200">
+                <AdvancedNode icon={Terminal} title="DevOps Engineer" model="Claude 3.5 Sonnet" color="#4488FF" status="Live" desc="Setting up CI/CD, monitoring and infrastructure..." progress={68} stats={[{label:'Services', val:'6'}, {label:'Pipelines', val:'4'}]}>
+                   <div className="flex items-center gap-3 mt-2">
+                     <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[8px]">AWS</div>
+                     <div className="w-6 h-6 rounded-full bg-[#00FF88]/20 text-[#00FF88] flex items-center justify-center text-[8px] font-bold">N</div>
+                     <div className="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[8px] font-bold">docker</div>
+                   </div>
+                </AdvancedNode>
+              </foreignObject>
+
+              <foreignObject x="1000" y="550" width="240" height="180">
+                <AdvancedNode icon={Shield} title="QA & Tester" model="GPT-4.1" color="#FFAA00" status="Live" desc="Writing and running tests... Ensuring quality..." progress={77} stats={[{label:'Tests', val:'128'}, {label:'Passed', val:'112'}]} />
+              </foreignObject>
+
+              <foreignObject x="1300" y="600" width="240" height="230">
+                <AdvancedNode icon={CheckCircle} title="Deployer" model="Vercel AI" color="#00FF88" status="Ready" desc="Preparing deployment pipeline...">
+                   <div className="space-y-2 text-[10px] text-white/70 mt-2">
+                      <div className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-[#00FF88]" /> Build Optimized</div>
+                      <div className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-[#00FF88]" /> Tests Passed</div>
+                      <div className="flex items-center gap-2"><CheckCircle className="w-3 h-3 text-[#00FF88]" /> Security Scanned</div>
+                   </div>
+                   <button className="w-full mt-4 py-2 rounded-md bg-[#00FF88]/10 text-[#00FF88] border border-[#00FF88]/30 font-semibold text-[10px] hover:bg-[#00FF88]/20 transition-colors">
+                     Deploy to Production
+                   </button>
+                </AdvancedNode>
+              </foreignObject>
+
             </svg>
             
             <div className="absolute inset-0 bg-gradient-to-t from-[#020203] via-transparent to-transparent opacity-80" />
@@ -470,35 +592,87 @@ export default function LandingPage() {
 
 
 
-function NodeCard({ title, model, color, streaming, terminal, connected }: any) {
+function Connection({ start, end, color, dashed = false }: any) {
+  const [sx, sy] = start;
+  const [ex, ey] = end;
+  const midX = (sx + ex) / 2;
+  const path = `M ${sx} ${sy} C ${midX} ${sy}, ${midX} ${ey}, ${ex} ${ey}`;
   return (
-    <div className="p-4 rounded-[14px] bg-[#0A0A0C]/90 border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] backdrop-blur-2xl w-full h-full hover:border-white/20 transition-all duration-300">
-      <div className="flex items-center justify-between mb-4">
+    <>
+      <path d={path} stroke={color} strokeWidth="1.5" fill="none" opacity="0.15" />
+      <path 
+        d={path} 
+        stroke={color} 
+        strokeWidth="1.5" 
+        fill="none" 
+        strokeDasharray={dashed ? "6 6" : "none"}
+        className={dashed ? "animate-[dash_20s_linear_infinite]" : "opacity-80"} 
+        style={{ filter: `drop-shadow(0 0 8px ${color})` }}
+      />
+      <circle cx={sx} cy={sy} r="3" fill={color} style={{ filter: `drop-shadow(0 0 6px ${color})` }} />
+      <circle cx={ex} cy={ey} r="3" fill={color} style={{ filter: `drop-shadow(0 0 6px ${color})` }} />
+    </>
+  );
+}
+
+function AdvancedNode({ 
+  icon: Icon, title, model, color, status, desc, progress, stats, code, children, pulse 
+}: any) {
+  return (
+    <div className="p-4 rounded-xl bg-[#0A0A0C]/95 border shadow-2xl backdrop-blur-2xl w-full h-full flex flex-col transition-all duration-300" style={{ borderColor: `${color}40`, boxShadow: `0 0 40px ${color}10` }}>
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full" style={{ background: color, boxShadow: streaming ? `0 0 10px ${color}` : 'none' }} />
-          <span className="text-xs font-semibold text-white/80">{title}</span>
+          {Icon && (
+            <div className="w-6 h-6 flex items-center justify-center rounded-md" style={{ backgroundColor: `${color}15`, color }}>
+              <Icon className="w-3.5 h-3.5" />
+            </div>
+          )}
+          <span className="text-xs font-semibold text-white/90">{title}</span>
         </div>
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 font-mono">
-          {model}
-        </span>
+        {model && (
+          <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 font-mono flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: color, boxShadow: pulse ? `0 0 8px ${color}` : 'none' }} className={pulse ? "animate-pulse" : ""} />
+            {model}
+          </span>
+        )}
       </div>
       
-      <div className="space-y-2">
-        {terminal ? (
-          <div className="h-16 bg-[#050507] rounded-md border border-white/5 p-2 font-mono text-[9px] text-[#00FF88]/70">
-            $ execute build<br/>
-            > resolving deps...
-          </div>
-        ) : (
-          <>
-            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-              {streaming && <div className="h-full w-2/3 bg-gradient-to-r from-transparent to-white/20 animate-pulse" />}
-              {connected && <div className="h-full w-full bg-white/10" />}
+      {status && (
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-[10px] text-white/40">Status:</span>
+          <span className="text-[10px] text-white/80 flex items-center gap-1.5">
+            <div className={`w-1.5 h-1.5 rounded-full ${status === 'Live' || status === 'Processing' ? 'animate-pulse' : ''}`} style={{ background: color, boxShadow: `0 0 8px ${color}` }} />
+            {status}
+          </span>
+        </div>
+      )}
+      
+      {desc && <p className="text-[10px] leading-[1.6] text-white/50 mb-4">{desc}</p>}
+      
+      <div className="mt-auto space-y-3">
+        {progress !== undefined && (
+          <div className="space-y-1.5">
+            <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+              <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%`, background: color, boxShadow: `0 0 10px ${color}` }} />
             </div>
-            <div className="h-2 w-4/5 bg-white/5 rounded-full" />
-            <div className="h-2 w-5/6 bg-white/5 rounded-full" />
-          </>
+          </div>
         )}
+        
+        {stats && (
+          <div className="flex items-center justify-between text-[9px] text-white/40 font-mono pt-1">
+            {stats.map((s: any, i: number) => (
+              <span key={i}>{s.label}: <span className="text-white/80">{s.val}</span></span>
+            ))}
+          </div>
+        )}
+
+        {code && (
+           <div className="bg-[#050507] rounded-md border border-white/5 p-2.5 font-mono text-[8px] text-white/50 overflow-hidden leading-relaxed">
+              {code}
+           </div>
+        )}
+
+        {children}
       </div>
     </div>
   );
