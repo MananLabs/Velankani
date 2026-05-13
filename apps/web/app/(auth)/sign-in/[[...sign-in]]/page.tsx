@@ -35,6 +35,16 @@ export default function SignInPage() {
           routing="path"
           signUpUrl="/sign-up"
           afterSignInUrl="/dashboard"
+          appearance={{
+            variables: {
+              colorPrimary: '#7C3AED',
+              colorBackground: '#111111',
+              colorText: '#F5F5F5',
+              colorInputBackground: '#161616',
+              colorInputText: '#F5F5F5',
+              borderRadius: '8px',
+            },
+          }}
         />
       ) : (
         <div 

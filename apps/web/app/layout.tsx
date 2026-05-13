@@ -84,7 +84,12 @@ export default function RootLayout({
               colorInputText: '#F5F5F5',
               borderRadius: '8px',
             },
+            elements: {
+              formButtonPrimary: 'bg-violet-600 hover:bg-violet-700',
+            },
           }}
+          signInFallbackRedirectUrl="/dashboard"
+          signUpFallbackRedirectUrl="/dashboard"
         >
           {content}
         </ClerkProvider>
