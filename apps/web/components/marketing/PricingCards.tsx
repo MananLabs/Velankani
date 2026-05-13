@@ -4,9 +4,9 @@ import { memo } from 'react';
 import Link from 'next/link';
 
 const PLANS = [
-  { name: 'Free', price: '$0', subtitle: 'Get started', features: ['500 credits/mo', 'Core models', '3 workspaces'] },
-  { name: 'Pro', price: '$29', subtitle: 'For builders', features: ['10,000 credits/mo', 'All models', 'Consensus mode'], highlight: true },
-  { name: 'BYOK', price: '$9', subtitle: 'Use your keys', features: ['Unlimited usage', 'Custom routing', 'Priority support'] },
+  { name: 'Free', price: '$0', subtitle: 'Start with core access', features: ['Limited daily usage', 'Core models', 'Basic compare'] },
+  { name: 'Pro', price: '$29', subtitle: 'Best for power users', features: ['Higher limits', 'Premium models', 'DeepSearch + Personas'], highlight: true },
+  { name: 'Teams', price: '$99', subtitle: 'For teams and companies', features: ['Shared billing', 'Team seats', 'Priority support'] },
 ];
 
 function PricingCardsInner() {
@@ -14,8 +14,8 @@ function PricingCardsInner() {
     <section id="pricing" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
-          <h2 className="text-[clamp(30px,4.8vw,52px)] font-bold text-white">Simple pricing.</h2>
-          <p className="mt-3 text-white/60">Start free and scale as your workload grows.</p>
+          <h2 className="text-[clamp(30px,4.8vw,52px)] font-bold text-white">One subscription, multiple premium AIs.</h2>
+          <p className="mt-3 text-white/60">No tool switching. No separate model subscriptions.</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">

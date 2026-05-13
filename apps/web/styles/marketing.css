@@ -4,19 +4,42 @@
 
 @layer base {
   :root {
-    --grok-bg-0: #030406;
-    --grok-bg-1: #090b11;
-    --grok-bg-2: #101521;
-    --grok-accent: #62b3ff;
-    --grok-accent-soft: rgba(98, 179, 255, 0.18);
+    --grok-bg-0: #040506;
+    --grok-bg-1: #090a0c;
+    --grok-bg-2: #111318;
+    --grok-accent: #d9dbe1;
+    --grok-accent-soft: rgba(217, 219, 225, 0.14);
   }
 }
 
 @layer utilities {
+  @keyframes route-flow {
+    from { stroke-dashoffset: 18; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes route-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+
+  .route-line {
+    fill: none;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-dasharray: 6 9;
+    animation: route-flow 1.5s linear infinite;
+  }
+
+  .route-dot {
+    animation: route-pulse 1.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
   .grok-page-bg {
     background:
-      radial-gradient(65% 45% at 80% 2%, rgba(98, 179, 255, 0.18) 0%, transparent 52%),
-      radial-gradient(50% 35% at 15% 18%, rgba(255, 255, 255, 0.08) 0%, transparent 58%),
+      radial-gradient(65% 45% at 80% 2%, rgba(255, 255, 255, 0.1) 0%, transparent 52%),
+      radial-gradient(50% 35% at 15% 18%, rgba(255, 255, 255, 0.06) 0%, transparent 58%),
       linear-gradient(180deg, var(--grok-bg-1) 0%, var(--grok-bg-0) 60%, #020203 100%);
   }
 
@@ -33,30 +56,31 @@
     inset: -20% -10% auto -10%;
     height: 70%;
     pointer-events: none;
-    background: radial-gradient(closest-side, rgba(98, 179, 255, 0.18), transparent 75%);
-    filter: blur(20px);
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.12), transparent 75%);
+    filter: blur(24px);
   }
 }
 
 @layer utilities {
   .bento-card {
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      0 28px 70px rgba(0,0,0,0.52),
-      0 0 0 1px rgba(255,255,255,0.02);
-    backdrop-filter: blur(10px);
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 28px 70px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,255,255,0.04);
+    backdrop-filter: blur(14px);
   }
 
   .bento-card:hover {
     border-color: rgba(255,255,255,0.18);
-    transition: border-color 220ms ease;
+    transition: border-color 220ms ease, transform 220ms ease;
+    transform: translateY(-1px);
   }
 }
 
 @layer utilities {
   .footer-warm-glow {
     background:
-      radial-gradient(60% 65% at 50% 100%, rgba(255, 169, 102, 0.55) 0%, rgba(255, 143, 67, 0.28) 38%, rgba(17, 22, 35, 0.0) 75%);
+      radial-gradient(60% 65% at 50% 100%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 38%, rgba(17, 22, 35, 0.0) 75%);
     filter: blur(35px);
     pointer-events: none;
   }
@@ -79,7 +103,7 @@
 
   .final-cta-shell {
     background:
-      radial-gradient(75% 70% at 50% 0%, rgba(112, 170, 255, 0.2) 0%, transparent 60%),
+      radial-gradient(75% 70% at 50% 0%, rgba(255, 255, 255, 0.14) 0%, transparent 60%),
       linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%),
       rgba(4, 6, 10, 0.8);
   }

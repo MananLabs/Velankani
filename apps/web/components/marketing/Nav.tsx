@@ -19,7 +19,7 @@ function NavInner() {
         </Link>
 
         <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.02] p-1">
-          {['Features', 'Swarms', 'Workspace', 'Pricing'].map((item) => (
+          {['Features', 'Models', 'Pricing'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}

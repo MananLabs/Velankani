@@ -4,7 +4,7 @@ import { memo } from 'react';
 
 const COLUMNS = [
   { title: 'TRY VEL ON', links: ['Web', 'iOS', 'Android', 'VEL on X'] },
-  { title: 'PRODUCTS', links: ['VEL', 'Studio', 'Enterprise', 'Playbook'] },
+  { title: 'PRODUCT', links: ['Features', 'Models', 'Pricing', 'DeepSearch'] },
   { title: 'API', links: ['Overview', 'Voice API', 'Image API', 'Pricing', 'Console', 'Docs'] },
   { title: 'COMPANY', links: ['Company', 'Careers', 'Contact', 'News'] },
   { title: 'RESOURCES', links: ['Privacy', 'Privacy Portal', 'Security', 'Safety', 'Legal', 'Status'] },

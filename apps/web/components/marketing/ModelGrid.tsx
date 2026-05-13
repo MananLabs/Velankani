@@ -3,14 +3,14 @@
 import { memo } from 'react';
 
 const MODELS = [
-  { name: 'Claude Sonnet', provider: 'Anthropic', tier: 'Pro' },
+  { name: 'Claude Sonnet', provider: 'Anthropic', tier: 'Included' },
   { name: 'GPT-4o', provider: 'OpenAI', tier: 'Pro' },
-  { name: 'Gemini Flash', provider: 'Google', tier: 'Free' },
-  { name: 'Grok', provider: 'xAI', tier: 'Pro' },
-  { name: 'Llama 3.3', provider: 'Meta', tier: 'Free' },
-  { name: 'Qwen Coder', provider: 'Qwen', tier: 'Free' },
-  { name: 'Sonar', provider: 'Perplexity', tier: 'Pro' },
-  { name: 'Hermes', provider: 'Nous', tier: 'Free' },
+  { name: 'Gemini Flash', provider: 'Google', tier: 'Included' },
+  { name: 'Grok', provider: 'xAI', tier: 'Included' },
+  { name: 'Llama 3.3', provider: 'Meta', tier: 'Included' },
+  { name: 'Qwen Coder', provider: 'Qwen', tier: 'Included' },
+  { name: 'Sonar', provider: 'Perplexity', tier: 'Included' },
+  { name: 'Hermes', provider: 'Nous', tier: 'Included' },
 ];
 
 function ModelGridInner() {
@@ -19,7 +19,7 @@ function ModelGridInner() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
           <p className="mb-3 text-xs uppercase tracking-[0.18em] text-sky-300/80">Models</p>
-          <h2 className="text-[clamp(30px,4.8vw,52px)] font-bold text-white">One UI. Many models.</h2>
+          <h2 className="text-[clamp(30px,4.8vw,52px)] font-bold text-white">Use the best model for each question.</h2>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
