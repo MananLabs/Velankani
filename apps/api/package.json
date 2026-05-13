@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nest start --watch",
+    "dev": "ts-node src/main.ts",
+    "dev:watch": "node --watch -r ts-node/register src/main.ts",
+    "dev:alt": "PORT=3003 FRONTEND_URL=http://localhost:3002 ts-node src/main.ts",
+    "dev:alt:watch": "PORT=3003 FRONTEND_URL=http://localhost:3002 node --watch -r ts-node/register src/main.ts",
+    "dev:alt:nowatch": "PORT=3003 FRONTEND_URL=http://localhost:3002 ts-node src/main.ts",
     "build": "tsc -p tsconfig.build.json --skipLibCheck",
     "start": "node dist/main",
     "start:prod": "node dist/main",

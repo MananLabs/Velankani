@@ -4,53 +4,80 @@ import { memo } from 'react';
 
 function TerminalShowcaseInner() {
   return (
-    <section style={{ padding: '128px 0', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(124,58,237,0.02) 0%, transparent 100%)' }} />
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 64, position: 'relative', zIndex: 10 }}>
-        {/* Text */}
-        <div style={{ flex: 1, minWidth: 320 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', borderRadius: 9999, background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.2)', color: '#7C3AED', fontSize: 11, fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 24 }}>
-            Agentic Execution
-          </div>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontFamily: 'var(--font-heading)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: 24 }}>
-            AI that writes code.<br />
-            <span style={{ color: 'rgba(255,255,255,0.4)' }}>And actually runs it.</span>
-          </h2>
-          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: 32 }}>
-            Deploy autonomous terminal agents. They execute commands, read output, debug failures, and deploy infrastructure directly from your workspace.
-          </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {['Secure isolated sandboxes', 'Real-time stdout/stderr streaming', 'Automated error recovery loops'].map((item) => (
-              <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,0.7)', fontSize: 15 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#7C3AED', boxShadow: '0 0 8px rgba(124,58,237,0.5)' }} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <article className="rounded-[28px] border border-white/10 bg-[#050609] p-4 md:p-6">
+          <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black min-h-[520px]">
+            <div className="absolute left-0 top-0 h-full w-16 border-r border-white/10 bg-white/[0.02]">
+              <div className="flex h-full flex-col items-center gap-4 pt-6 text-white/60">
+                {['◎', '⌕', '✎', '⋮', '◌', '↺'].map((i) => (
+                  <span key={i} className="text-sm">{i}</span>
+                ))}
+              </div>
+            </div>
 
-        {/* Terminal mockup */}
-        <div style={{ flex: 1, minWidth: 360 }}>
-          <div style={{ background: '#0A0A0C', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 16, boxShadow: '0 0 60px rgba(0,0,0,0.5)', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.02)' }}>
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: 'rgba(239,68,68,0.8)' }} />
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: 'rgba(245,158,11,0.8)' }} />
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: 'rgba(34,197,94,0.8)' }} />
-              <span style={{ marginLeft: 8, fontSize: 12, fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.3)' }}>vel-ai@production:~</span>
+            <div className="absolute right-8 top-8 text-sm text-white/50">Private</div>
+
+            <div className="ml-20 mr-10 mt-28 text-center">
+              <h3 className="text-6xl font-semibold tracking-tight text-white/95">VEL AI</h3>
+              <div className="mx-auto mt-12 max-w-3xl rounded-full border border-white/10 bg-white/[0.07] px-6 py-3 text-left text-white/45">
+                What do you want to know?
+              </div>
+              <div className="mt-5 flex justify-center gap-3 text-sm text-white/65">
+                {['DeepSearch', 'Create Images', 'Personas'].map((chip) => (
+                  <span key={chip} className="rounded-full border border-white/15 px-4 py-1.5">{chip}</span>
+                ))}
+              </div>
             </div>
-            <div style={{ padding: 24, fontFamily: 'var(--font-mono)', fontSize: 13, lineHeight: 2, height: 320, overflow: 'hidden', position: 'relative' }}>
-              <div style={{ color: 'rgba(255,255,255,0.4)' }}>~ <span style={{ color: '#7C3AED' }}>$</span> vel-agent deploy --target aws</div>
-              <div style={{ color: '#A78BFA', marginTop: 8 }}>➔ Initializing Claude DevOps Agent...</div>
-              <div style={{ color: 'rgba(255,255,255,0.6)', marginTop: 8 }}>Analyzing infrastructure requirements...</div>
-              <div style={{ color: 'rgba(255,255,255,0.6)' }}>Generating Terraform states...</div>
-              <div style={{ color: '#F59E0B', marginTop: 8 }}>⚠ Warning: Missing IAM permissions. Auto-generating policy patch.</div>
-              <div style={{ color: 'rgba(255,255,255,0.6)', marginTop: 8 }}>Applying patches...</div>
-              <div style={{ color: '#22C55E', marginTop: 16 }}>✔ Infrastructure successfully deployed in 14.2s</div>
-              <div style={{ color: 'rgba(255,255,255,0.4)', marginTop: 16 }}>~ <span style={{ color: '#7C3AED' }}>$</span> <span style={{ animation: 'blink 1s step-end infinite' }}>_</span></div>
-              <div style={{ position: 'absolute', insetInline: 0, bottom: 0, height: 96, background: 'linear-gradient(0deg, #0A0A0C, transparent)' }} />
+
+            <div className="absolute bottom-0 right-0 w-[260px] sm:w-[340px]">
+              <div className="rounded-t-[46px] border border-white/15 bg-black/95 p-4">
+                <div className="mb-4 text-xs text-white/70">Ask | Imagine</div>
+                <div className="h-56 rounded-2xl border border-white/10 bg-black/70" />
+                <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.05] p-3 text-white/35">Ask anything...</div>
+              </div>
             </div>
           </div>
-        </div>
+        </article>
+
+        <article className="grid border border-white/10 bg-black/85 md:grid-cols-2">
+          <div className="border-b border-white/10 p-10 md:border-b-0 md:border-r">
+            <h3 className="text-[56px] font-semibold leading-[0.95] tracking-tight text-white">
+              Deep dive with
+              <br />
+              <span className="text-white/45">VEL Heavy</span>
+            </h3>
+            <p className="mt-20 max-w-xl text-[20px] leading-relaxed text-white/75">
+              The most powerful run mode for long-horizon agent orchestration across your workspace.
+            </p>
+            <button className="mt-8 rounded-full border border-white/25 px-7 py-2 text-sm tracking-[0.2em] text-white/80">DIVE DEEP ↗</button>
+          </div>
+
+          <div className="p-10 relative">
+            <div className="mx-auto max-w-xl relative">
+              <div className="absolute left-1/2 top-[-34px] h-9 w-px -translate-x-1/2 bg-emerald-300/55" />
+              <div className="mb-8 rounded-2xl border border-white/15 p-5">
+                <div className="text-2xl font-semibold">VEL 4 Heavy</div>
+                <div className="mt-4 flex items-center justify-between text-sm text-white/60">
+                  <span className="text-emerald-300">● COMPLETE</span>
+                  <span>RAN FOR 10 MINUTES</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                {['AGENT 1', 'AGENT 2', 'AGENT 3'].map((a, i) => (
+                  <div key={a} className={`rounded-xl border p-4 ${i === 1 ? 'border-emerald-300/70' : 'border-white/15'}`}>
+                    <div className={`text-sm ${i === 1 ? 'text-emerald-300' : 'text-orange-300'}`}>● {a}</div>
+                    <div className="mt-1 text-white/60">COMPLETE</div>
+                    <div className="mt-3 text-orange-300">:::::::::::::::</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mx-auto mt-8 max-w-xs rounded-xl border border-emerald-300/70 p-4 text-center text-xl">
+                Thought for 10 minutes
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ const SWARM_ITEMS = [
 
 function HeroInner() {
   return (
-    <section className="relative overflow-hidden px-6 pt-32 pb-24">
+    <section className="relative overflow-hidden px-6 pt-40 pb-24">
       <div className="grok-hero-glow" />
       <div className="mx-auto max-w-6xl">
         <motion.div
@@ -27,7 +27,7 @@ function HeroInner() {
             <br />
             <span className="text-white/45">Zero limitations.</span>
           </h1>
-          <p className="mt-7 max-w-3xl text-[clamp(16px,2vw,31px)] leading-relaxed text-white/52">
+          <p className="mt-7 max-w-3xl text-[clamp(18px,2.1vw,36px)] leading-relaxed text-white/50">
             Break out of the chat box. Orchestrate complex workflows with multi-agent consensus, live terminal execution, and persistent shared context.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -52,8 +52,8 @@ function HeroInner() {
                 </div>
               ))}
             </div>
-            <h3 className="mt-10 text-[34px] font-semibold tracking-tight text-white">Autonomous Swarms</h3>
-            <p className="mt-3 text-lg leading-relaxed text-white/45">
+            <h3 className="mt-10 text-[clamp(30px,2.6vw,35px)] font-semibold tracking-tight text-white">Autonomous Swarms</h3>
+            <p className="mt-3 text-[clamp(16px,1.35vw,20px)] leading-relaxed text-white/43">
               Deploy multiple specialized agents to handle repetitive research and engineering pipelines.
             </p>
           </article>
@@ -69,8 +69,8 @@ function HeroInner() {
                 <rect x="525" y="146" width="34" height="34" rx="9" fill="rgba(255,170,74,0.08)" stroke="rgba(255,170,74,0.4)" />
               </svg>
             </div>
-            <h3 className="mt-2 text-[34px] font-semibold tracking-tight text-white">Infinite Routing</h3>
-            <p className="mt-3 max-w-3xl text-lg leading-relaxed text-white/45">
+            <h3 className="mt-2 text-[clamp(30px,2.6vw,35px)] font-semibold tracking-tight text-white">Infinite Routing</h3>
+            <p className="mt-3 max-w-3xl text-[clamp(16px,1.35vw,20px)] leading-relaxed text-white/43">
               Design complex acyclic graphs. Output from GPT-4o flows directly into Claude&apos;s context window.
             </p>
           </article>
@@ -80,8 +80,8 @@ function HeroInner() {
               <div className="absolute inset-5 rounded-full border border-white/10" />
               <div className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
             </div>
-            <h3 className="text-[34px] font-semibold tracking-tight text-white">Shared Context</h3>
-            <p className="mt-3 text-lg leading-relaxed text-white/45">
+            <h3 className="text-[clamp(30px,2.6vw,35px)] font-semibold tracking-tight text-white">Shared Context</h3>
+            <p className="mt-3 text-[clamp(16px,1.35vw,20px)] leading-relaxed text-white/43">
               A persistent memory store ensures all agents maintain exact situational awareness.
             </p>
           </article>
@@ -95,8 +95,8 @@ function HeroInner() {
               <div className="pl-3">autoFix: true</div>
               <div>{`}`});</div>
             </div>
-            <h3 className="text-[34px] font-semibold tracking-tight text-white">Terminal Sandboxes</h3>
-            <p className="mt-3 text-lg leading-relaxed text-white/45">
+            <h3 className="text-[clamp(30px,2.6vw,35px)] font-semibold tracking-tight text-white">Terminal Sandboxes</h3>
+            <p className="mt-3 text-[clamp(16px,1.35vw,20px)] leading-relaxed text-white/43">
               Deploy agents that can write, execute, and debug bash scripts natively.
             </p>
           </article>
@@ -109,8 +109,8 @@ function HeroInner() {
                 ))}
               </div>
             </div>
-            <h3 className="text-[34px] font-semibold tracking-tight text-white">Deep Research</h3>
-            <p className="mt-3 text-lg leading-relaxed text-white/45">
+            <h3 className="text-[clamp(30px,2.6vw,35px)] font-semibold tracking-tight text-white">Deep Research</h3>
+            <p className="mt-3 text-[clamp(16px,1.35vw,20px)] leading-relaxed text-white/43">
               Multi-pass data extraction powered by Perplexity Sonar and continuous learning.
             </p>
           </article>

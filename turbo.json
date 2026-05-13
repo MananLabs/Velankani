@@ -17,6 +17,14 @@
       "cache": false,
       "persistent": true
     },
+    "dev:alt": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:alt:nowatch": {
+      "cache": false,
+      "persistent": true
+    },
     "lint": {
       "dependsOn": ["^build"]
     },

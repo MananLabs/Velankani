@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "dev": "turbo run dev",
+    "dev:alt": "turbo run dev:alt",
+    "dev:alt:nowatch": "turbo run dev:alt:nowatch",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
