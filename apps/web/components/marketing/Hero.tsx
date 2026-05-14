@@ -45,27 +45,31 @@ function HeroInner() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <h1 className="text-[clamp(44px,7vw,82px)] font-extrabold leading-[0.95] tracking-tight text-white">
-            World&apos;s top AIs.
-            <br />
-            <span className="text-white/45">One chat. One subscription.</span>
+          <h1 className="max-w-5xl text-[clamp(40px,6vw,84px)] font-black leading-[0.92] tracking-[-0.05em] text-white">
+            <span className="block text-white/82">The smartest AI workspace for</span>
+            <span className="mt-4 block">
+              your{' '}
+              <span className="inline-flex items-center rounded-[0.26em] border border-white/15 bg-white/92 px-[0.2em] py-[0.04em] align-middle text-black shadow-[0_0_34px_rgba(255,255,255,0.14)]">
+                <RotatingText
+                  texts={['GPT', 'Claude', 'Gemini', 'Grok', 'DeepSeek', 'Kimi']}
+                  splitBy="words"
+                  mainClassName="inline-flex min-w-[5.5ch] flex-nowrap items-center justify-center whitespace-nowrap text-[0.9em] leading-none text-black font-black align-middle"
+                  splitLevelClassName="overflow-hidden leading-none"
+                  elementLevelClassName="inline-block leading-none"
+                  staggerFrom="last"
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-120%' }}
+                  staggerDuration={0.02}
+                  transition={{ type: 'spring', damping: 30, stiffness: 420 }}
+                  rotationInterval={1800}
+                />
+              </span>{' '}
+              growth
+            </span>
           </h1>
-          <p className="mt-7 max-w-3xl text-[clamp(18px,2.1vw,36px)] leading-relaxed text-white/50">
-            Use{' '}
-            <RotatingText
-              texts={['GPT', 'Claude', 'Gemini', 'Grok', 'DeepSeek', 'Kimi']}
-              mainClassName="inline-flex w-[9ch] justify-center px-2 py-0.5 rounded-lg border border-white/20 bg-white/10 text-white font-semibold align-middle"
-              splitLevelClassName="overflow-hidden"
-              elementLevelClassName="inline-block"
-              staggerFrom="last"
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '-120%' }}
-              staggerDuration={0.02}
-              transition={{ type: 'spring', damping: 30, stiffness: 420 }}
-              rotationInterval={1800}
-            />{' '}
-            and more in one place. Ask once, compare instantly, and pick the best answer faster.
+          <p className="mt-6 max-w-2xl text-[clamp(16px,1.8vw,24px)] leading-relaxed text-white/50">
+            Ask once, compare instantly, and keep every model, doc, and decision in one premium workspace.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/sign-up" className="rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-white/15">
@@ -112,7 +116,14 @@ function HeroInner() {
             <div className="absolute inset-0 opacity-70" style={{ background: 'radial-gradient(55% 55% at 50% 0%, rgba(94,144,255,0.15) 0%, transparent 72%)' }} />
             <div className="relative min-h-[220px]">
               <svg viewBox="0 0 600 220" className="h-[220px] w-full">
+                <defs>
+                  <radialGradient id="coreGlow" cx="50%" cy="50%" r="70%">
+                    <stop offset="0%" stopColor="rgba(255,255,255,0.28)" />
+                    <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                  </radialGradient>
+                </defs>
                 <rect x="252" y="82" width="68" height="68" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" />
+                <circle cx="286" cy="116" r="30" fill="url(#coreGlow)" />
 
                 <path className="route-line" d="M320 96 C 394 68, 450 49, 522 36" stroke="rgba(98, 152, 255, 0.7)" />
                 <path className="route-line" d="M320 102 C 396 84, 450 69, 522 60" stroke="rgba(128, 164, 255, 0.66)" style={{ animationDelay: '-0.18s' }} />
@@ -121,12 +132,18 @@ function HeroInner() {
                 <path className="route-line" d="M320 136 C 405 146, 452 160, 522 172" stroke="rgba(255, 168, 84, 0.66)" style={{ animationDelay: '-0.8s' }} />
 
                 <circle cx="320" cy="116" r="3.2" fill="rgba(255,255,255,0.9)" className="route-dot" />
+                <circle cx="320" cy="116" r="8" fill="rgba(255,255,255,0.08)" />
 
                 <rect x="522" y="18" width="42" height="30" rx="9" fill="rgba(86,131,255,0.08)" stroke="rgba(86,131,255,0.5)" />
                 <rect x="522" y="50" width="42" height="30" rx="9" fill="rgba(110,150,255,0.08)" stroke="rgba(110,150,255,0.5)" />
                 <rect x="522" y="84" width="42" height="30" rx="9" fill="rgba(149,93,255,0.08)" stroke="rgba(149,93,255,0.5)" />
                 <rect x="522" y="120" width="42" height="30" rx="9" fill="rgba(82,212,255,0.08)" stroke="rgba(82,212,255,0.5)" />
                 <rect x="522" y="156" width="42" height="30" rx="9" fill="rgba(255,170,74,0.08)" stroke="rgba(255,170,74,0.5)" />
+                <circle cx="543" cy="33" r="3.2" fill="rgba(177, 201, 255, 0.95)" />
+                <circle cx="543" cy="65" r="3.2" fill="rgba(191, 210, 255, 0.95)" />
+                <circle cx="543" cy="99" r="3.2" fill="rgba(215, 183, 255, 0.95)" />
+                <circle cx="543" cy="135" r="3.2" fill="rgba(176, 240, 255, 0.95)" />
+                <circle cx="543" cy="171" r="3.2" fill="rgba(255, 214, 163, 0.95)" />
 
                 <text x="475" y="37" fontSize="10" fill="rgba(162, 190, 255, 0.96)" letterSpacing="0.08em">GPT</text>
                 <text x="458" y="69" fontSize="10" fill="rgba(178, 203, 255, 0.96)" letterSpacing="0.08em">CLAUDE</text>
