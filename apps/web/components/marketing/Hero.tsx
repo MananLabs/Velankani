@@ -4,6 +4,7 @@ import { memo } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import MagicBento from '@/components/marketing/MagicBento';
+import GradientBlinds from '@/components/marketing/GradientBlinds';
 
 const SWARM_ITEMS = [
   { label: 'Ask once, compare instantly', color: 'bg-emerald-400' },
@@ -18,6 +19,22 @@ function HeroInner() {
       <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
         <source src="https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/dds3_1_rqhg7x.mp4" type="video/mp4" />
       </video>
+      <div className="absolute inset-0 z-[5] pointer-events-none opacity-30">
+        <GradientBlinds
+          gradientColors={['#FFFFFF', '#E5E7EB', '#94A3B8']}
+          angle={8}
+          noise={0.2}
+          blindCount={12}
+          blindMinWidth={50}
+          spotlightRadius={0.45}
+          spotlightSoftness={1}
+          spotlightOpacity={0.5}
+          mouseDampening={0.15}
+          distortAmount={0.15}
+          shineDirection="left"
+          mixBlendMode="screen"
+        />
+      </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/65 via-black/70 to-black/88" />
       <div className="grok-hero-glow z-10" />
       <div className="relative z-20 mx-auto max-w-6xl w-full">
@@ -50,7 +67,7 @@ function HeroInner() {
         >
           <MagicBento
             className="grid grid-cols-1 gap-4 md:grid-cols-3"
-            textAutoHide={true}
+            textAutoHide={false}
             enableStars={true}
             enableSpotlight={true}
             enableBorderGlow={true}
