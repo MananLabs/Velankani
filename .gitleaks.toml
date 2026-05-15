@@ -1,0 +1,23 @@
+title = "VEL AI Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known safe test/sample values"
+paths = [
+  "(node_modules|.git|dist|.next)",
+  "package-lock.json",
+  "\.env\.example$",
+]
+regexes = [
+  # Example/test Clerk publishable keys (pk_test_ prefix is designed to be public)
+  "pk_test_.{10,}",
+  # Test Stripe keys
+  "sk_test_.{10,}",
+  # Dummy values in .env.example
+  "replace_with_",
+  "your-",
+  "xxx",
+  "yyy",
+]

@@ -3,18 +3,24 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "frontend/*",
+    "backend/*",
     "packages/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
+    "dev:frontend": "turbo run dev --filter=@vel-ai/web",
+    "dev:backend": "turbo run dev --filter=@vel-ai/api",
     "dev:alt": "turbo run dev:alt",
     "dev:alt:nowatch": "turbo run dev:alt:nowatch",
     "build": "turbo run build",
+    "start": "turbo run start",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "db:generate": "npm run db:generate --workspace=apps/api",
-    "db:migrate": "npm run db:migrate --workspace=apps/api",
+    "db:generate": "npm run db:generate --workspace=@vel-ai/api",
+    "db:migrate": "npm run db:migrate --workspace=@vel-ai/api",
+    "db:push": "npm run db:migrate --workspace=@vel-ai/api",
+    "db:studio": "npm run db:studio --workspace=@vel-ai/api",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {

@@ -3,5 +3,12 @@ node_modules
 dist
 build
 .env
+.env.local
+.env.production
+.env.*.local
 .vercel
 *.log
+*.tsbuildinfo
+.turbo
+backend/ai-cli/.recordings
+backend/ai-cli/storage

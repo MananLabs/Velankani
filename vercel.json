@@ -1,0 +1,7 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "cd frontend/web && npm run build",
+  "outputDirectory": "frontend/web/.next",
+  "installCommand": "npm ci",
+  "ignoreCommand": "cd frontend/web && npx --yes turbo-ignore"
+}
