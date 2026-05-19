@@ -34,6 +34,8 @@
   "packageManager": "npm@10.0.0",
   "dependencies": {
     "@better-auth/infra": "^0.2.8",
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.106.0",
     "better-auth": "^1.6.11",
     "pg": "^8.21.0"
   }

@@ -10,6 +10,11 @@ export const auth = betterAuth({
   basePath: '/api/v1/auth',
   secret: process.env.BETTER_AUTH_SECRET,
 
+  database: {
+    type: 'postgres',
+    url: process.env.DATABASE_URL!,
+  },
+
   emailAndPassword: {
     enabled: true,
     autoSignIn: true,
@@ -19,10 +24,10 @@ export const auth = betterAuth({
   session: {
     cookieCache: {
       enabled: true,
-      maxAge: 60 * 5, // 5 minutes
+      maxAge: 60 * 5,
     },
-    expiresIn: 60 * 60 * 24 * 7, // 7 days
-    updateAge: 60 * 60 * 24, // 1 day
+    expiresIn: 60 * 60 * 24 * 7,
+    updateAge: 60 * 60 * 24,
   },
 
   trustedOrigins: [

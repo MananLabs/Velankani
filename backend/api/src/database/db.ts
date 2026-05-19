@@ -1,27 +1,26 @@
 // ═══════════════════════════════════════════════════════════
-// VEL AI — Neon PostgreSQL Connection
+// VEL AI — PostgreSQL Connection (Supabase)
 // ═══════════════════════════════════════════════════════════
 
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from './schema';
 
 let db: ReturnType<typeof drizzle<typeof schema>>;
 
 if (process.env.DATABASE_URL) {
-  const sql = neon(process.env.DATABASE_URL);
-  db = drizzle(sql, { schema });
+  const client = postgres(process.env.DATABASE_URL, { prepare: false });
+  db = drizzle(client, { schema });
 } else {
   console.warn(
-    '⚠️  DATABASE_URL not set — database features will be unavailable. Set it in backend/api/.env when ready.',
+    '⚠️  DATABASE_URL not set — database features will be unavailable.',
   );
-  // Proxy that throws a clear error only when DB is actually used
   db = new Proxy({} as any, {
     get(_target, prop) {
-      if (prop === 'then') return undefined; // prevent Promise-like behavior
-      return (...args: any[]) => {
+      if (prop === 'then') return undefined;
+      return (..._args: any[]) => {
         throw new Error(
-          `Database not configured. Set DATABASE_URL in backend/api/.env to enable database features.`,
+          'Database not configured. Set DATABASE_URL in backend/api/.env',
         );
       };
     },
