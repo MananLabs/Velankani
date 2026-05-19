@@ -5,6 +5,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { RedisModule } from './redis/redis.module';
+import { AuthModule } from './auth/auth.module';
 import { AIModule } from './modules/ai/ai.module';
 import { ContextModule } from './modules/context/context.module';
 import { CreditsModule } from './modules/credits/credits.module';
@@ -25,6 +26,7 @@ import { VoiceModule } from './modules/voice/voice.module';
       envFilePath: '.env',
     }),
     RedisModule,
+    AuthModule,
     ContextModule,
     CreditsModule,
     AnalyticsModule,

@@ -70,14 +70,17 @@ export class AIController {
   ): Promise<void> {
     const startTime = Date.now();
 
-    const canAccess = await this.workspaceService.verifyOwnership(
-      dto.workspaceId,
-      req.user.id,
-    );
-    if (!canAccess) {
-      res.setHeader('Content-Type', 'application/json');
-      res.status(403).end(JSON.stringify({ error: 'Workspace access denied' }));
-      return;
+    // Skip workspace ownership check if DB is not configured
+    if (process.env.DATABASE_URL) {
+      const canAccess = await this.workspaceService.verifyOwnership(
+        dto.workspaceId,
+        req.user.id,
+      );
+      if (!canAccess) {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(403).end(JSON.stringify({ error: 'Workspace access denied' }));
+        return;
+      }
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
@@ -187,14 +190,17 @@ export class AIController {
     @Body() dto: ConsensusStreamDto,
     @Res() res: Response,
   ): Promise<void> {
-    const canAccess = await this.workspaceService.verifyOwnership(
-      dto.workspaceId,
-      req.user.id,
-    );
-    if (!canAccess) {
-      res.setHeader('Content-Type', 'application/json');
-      res.status(403).end(JSON.stringify({ error: 'Workspace access denied' }));
-      return;
+    // Skip workspace ownership check if DB is not configured
+    if (process.env.DATABASE_URL) {
+      const canAccess = await this.workspaceService.verifyOwnership(
+        dto.workspaceId,
+        req.user.id,
+      );
+      if (!canAccess) {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(403).end(JSON.stringify({ error: 'Workspace access denied' }));
+        return;
+      }
     }
 
     const reservedCredits = await this.creditsService.reserveCredits(

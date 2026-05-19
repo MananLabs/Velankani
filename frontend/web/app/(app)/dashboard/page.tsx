@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession, signOut } from '@/lib/auth-client';
 import { NewWorkspaceModal } from '@/components/workspace/NewWorkspaceModal';
 
 const MOCK_WORKSPACES = [
@@ -32,6 +33,9 @@ const MOCK_WORKSPACES = [
 
 export default function DashboardPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const { data: session } = useSession();
+  const userName = session?.user?.name || 'User';
+  const userInitial = userName.charAt(0).toUpperCase();
 
   return (
     <div
@@ -89,6 +93,7 @@ export default function DashboardPage() {
             </span>
           </div>
           <div
+            onClick={() => signOut({ fetchOptions: { onSuccess: () => window.location.href = '/sign-in' } })}
             style={{
               width: 32,
               height: 32,
@@ -102,8 +107,9 @@ export default function DashboardPage() {
               color: '#FFF',
               cursor: 'pointer',
             }}
+            title="Sign out"
           >
-            U
+            {userInitial}
           </div>
         </div>
       </header>

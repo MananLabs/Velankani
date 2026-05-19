@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
-const publicRoutes = ['/', '/sign-in', '/sign-up', '/api/webhooks', '/api/auth'];
+const publicRoutes = ['/', '/sign-in', '/sign-up', '/api/auth'];
 
 function isPublicRoute(pathname: string): boolean {
   return publicRoutes.some(
@@ -11,13 +11,16 @@ function isPublicRoute(pathname: string): boolean {
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Allow public routes
+  // Allow public routes and static assets
   if (isPublicRoute(pathname)) {
     return NextResponse.next();
   }
 
-  // Check for session cookie (set during sign-up/sign-in)
-  const session = req.cookies.get('vel-session');
+  // Check for Better Auth session cookie
+  // Better Auth sets a cookie named "better-auth.session_token" by default
+  const session =
+    req.cookies.get('better-auth.session_token') ||
+    req.cookies.get('__Secure-better-auth.session_token');
 
   if (!session) {
     const signInUrl = new URL('/sign-in', req.url);

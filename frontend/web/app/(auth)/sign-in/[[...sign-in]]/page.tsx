@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { signIn } from '@/lib/auth-client';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -17,29 +18,23 @@ export default function SignInPage() {
     setLoading(true);
     setError('');
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+    await signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          router.push('/dashboard');
+        },
+        onError: (ctx) => {
+          setError(ctx.error.message || 'Sign in failed');
+          setLoading(false);
+        },
+      },
+    );
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Sign in failed');
-      }
-
-      if (data.user) {
-        localStorage.setItem('vel_user', JSON.stringify(data.user));
-      }
-
-      router.push('/dashboard');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
-    } finally {
-      setLoading(false);
-    }
+    setLoading(false);
   };
 
   return (
