@@ -21,7 +21,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { getAvailableModels, getModel, type AIModel } from '@vel-ai/shared/types/models';
 import { useWorkspaceStore } from '@/lib/stores/workspace.store';
 import { useCreditStore } from '@/lib/stores/credits.store';

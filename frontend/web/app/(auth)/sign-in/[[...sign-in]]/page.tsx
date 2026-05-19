@@ -1,31 +1,53 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const SignIn = dynamic(
-  () => import('@clerk/nextjs').then((module) => module.SignIn),
-  { ssr: false },
-);
-
 export default function SignInPage() {
-  const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  const hasValidClerkKey = clerkKey && clerkKey.startsWith('pk_') && clerkKey.length > 20;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Sign in failed');
+      }
+
+      if (data.user) {
+        localStorage.setItem('vel_user', JSON.stringify(data.user));
+      }
+
+      router.push('/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'transparent',
-      }}
-    >
+    <div className="min-h-screen flex items-center justify-center relative">
+      {/* Background glow */}
       <div
+        className="absolute pointer-events-none"
         style={{
-          position: 'absolute',
           width: 800,
           height: 800,
           background:
@@ -33,74 +55,72 @@ export default function SignInPage() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          pointerEvents: 'none',
         }}
       />
-      
-      {hasValidClerkKey ? (
-        <SignIn
-          path="/sign-in"
-          routing="path"
-          signUpUrl="/sign-up"
-          afterSignInUrl="/dashboard"
-          appearance={{
-            variables: {
-              colorPrimary: '#7C3AED',
-              colorBackground: '#111111',
-              colorText: '#F5F5F5',
-              colorInputBackground: '#161616',
-              colorInputText: '#F5F5F5',
-              borderRadius: '8px',
-            },
-          }}
-        />
-      ) : (
-        <div 
-          className="vel-glass" 
-          style={{ 
-            padding: '48px 40px', 
-            borderRadius: 24, 
-            textAlign: 'center', 
-            maxWidth: 420,
-            position: 'relative',
-            zIndex: 10,
-            boxShadow: '0 24px 64px rgba(0,0,0,0.4)'
-          }}
-        >
-          <div style={{ width: 56, height: 56, margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Image src="/logo.avif" alt="VEL AI logo" width={56} height={56} />
-          </div>
-          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 600, marginBottom: 12, color: '#FFF' }}>
-            Welcome Back
-          </h2>
-          <p style={{ color: '#888', fontSize: 15, lineHeight: 1.6, marginBottom: 32 }}>
-            Running in local preview mode. Authentication is currently bypassed.
-          </p>
-          <Link 
-            href="/dashboard" 
-            style={{ 
-              display: 'block', 
-              textDecoration: 'none',
-              background: '#FFF',
-              color: '#000',
-              padding: '14px 24px',
-              borderRadius: 12,
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: 600,
-              fontSize: 15,
-              transition: 'transform 0.2s, opacity 0.2s'
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            Enter Dashboard →
-          </Link>
-          
-          <div style={{ marginTop: 24, fontSize: 12, color: '#555' }}>
-            Configure Clerk keys in .env.local to enable auth.
-          </div>
+
+      <div
+        className="relative z-10 w-full max-w-[420px] mx-4 text-center"
+        style={{
+          padding: '48px 40px',
+          borderRadius: 24,
+          background: 'rgba(17, 17, 17, 0.8)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          backdropFilter: 'blur(24px)',
+          boxShadow: '0 24px 64px rgba(0,0,0,0.4)',
+        }}
+      >
+        {/* Logo */}
+        <div className="w-14 h-14 mx-auto mb-6 flex items-center justify-center">
+          <Image src="/logo.avif" alt="VEL AI" width={56} height={56} />
         </div>
-      )}
+
+        <h2 className="text-2xl font-semibold text-white mb-2">Welcome Back</h2>
+        <p className="text-sm text-[#888] mb-8">
+          Sign in to your VEL AI workspace
+        </p>
+
+        {error && (
+          <div className="mb-5 px-4 py-3 rounded-lg text-sm text-red-400 bg-red-500/10 border border-red-500/30">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email address"
+            required
+            className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-lg text-white text-[15px] outline-none focus:border-violet-500/50 transition placeholder:text-[#555]"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="w-full px-4 py-3.5 bg-white/5 border border-white/10 rounded-lg text-white text-[15px] outline-none focus:border-violet-500/50 transition placeholder:text-[#555]"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3.5 mt-2 bg-[#6D5FFF] hover:bg-[#5B4FE6] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-[15px] rounded-xl transition"
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <div className="mt-6 text-sm text-[#666]">
+          Don&apos;t have an account?{' '}
+          <Link
+            href="/sign-up"
+            className="text-[#6D5FFF] hover:text-[#8B7AFF] font-medium no-underline transition"
+          >
+            Sign up
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,6 @@ export type Plan = 'free' | 'pro' | 'pro_byok' | 'teams' | 'enterprise';
 
 export interface User {
   id: string;
-  clerkId: string;
   email: string;
   name: string | null;
   avatarUrl: string | null;

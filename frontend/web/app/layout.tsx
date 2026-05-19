@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google';
-import { ClerkProvider } from '@clerk/nextjs';
 import { QueryProvider } from '@/components/providers/query-provider';
 import '@/styles/globals.css';
 import '@/styles/marketing.css';
@@ -61,17 +60,11 @@ export const metadata: Metadata = {
   },
 };
 
-const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-const hasValidClerkKey =
-  clerkKey && clerkKey.startsWith('pk_') && clerkKey.length > 20;
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const content = <QueryProvider>{children}</QueryProvider>;
-
   return (
     <html
       lang="en"
@@ -79,30 +72,7 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable} ${jetbrains.variable}`}
     >
       <body className="bg-[#0A0A0A] text-[#F5F5F5] font-body antialiased selection:bg-violet-500/30 selection:text-white">
-        <ClerkProvider
-          publishableKey={
-            hasValidClerkKey
-              ? clerkKey
-              : 'pk_test_ZHVtbXkua2V5LmNsZXJrLmFjY291bnRzLmRldiQ'
-          }
-          appearance={{
-            variables: {
-              colorPrimary: '#7C3AED',
-              colorBackground: '#111111',
-              colorText: '#F5F5F5',
-              colorInputBackground: '#161616',
-              colorInputText: '#F5F5F5',
-              borderRadius: '8px',
-            },
-            elements: {
-              formButtonPrimary: 'bg-violet-600 hover:bg-violet-700',
-            },
-          }}
-          signInFallbackRedirectUrl="/dashboard"
-          signUpFallbackRedirectUrl="/dashboard"
-        >
-          {content}
-        </ClerkProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

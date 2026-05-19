@@ -6,7 +6,7 @@
 
 import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth } from '@/lib/hooks/useAuth';
 import type { TileType } from '@vel-ai/shared/types/tiles';
 
 const API_BASE =

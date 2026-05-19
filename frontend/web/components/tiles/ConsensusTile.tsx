@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { Handle, Position, type NodeProps } from 'reactflow';
 import ReactMarkdown from 'react-markdown';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth } from '@/lib/hooks/useAuth';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ConsensusTileData {

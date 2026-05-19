@@ -13,16 +13,23 @@ import { encrypt } from '../../common/encryption';
 export class UsersService {
   private readonly logger = new Logger(UsersService.name);
 
-  async findByClerkId(clerkId: string) {
+  async findById(userId: string) {
     const [user] = await db
       .select()
       .from(users)
-      .where(eq(users.clerkId, clerkId));
+      .where(eq(users.id, userId));
     return user || null;
   }
 
-  async createFromClerk(data: {
-    clerkId: string;
+  async findByEmail(email: string) {
+    const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email));
+    return user || null;
+  }
+
+  async create(data: {
     email: string;
     name?: string;
     avatarUrl?: string;
@@ -32,16 +39,16 @@ export class UsersService {
     const avatarUrl = data.avatarUrl || null;
 
     const result = await db.execute(sql`
-      INSERT INTO users (clerk_id, email, name, avatar_url, referral_code, plan, credits_remaining, credits_monthly_alloc, credits_used_this_month, onboarding_complete)
-      VALUES (${data.clerkId}, ${data.email}, ${name}, ${avatarUrl}, ${referralCode}, 'free', 100, 100, 0, false)
+      INSERT INTO users (email, name, avatar_url, referral_code, plan, credits_remaining, credits_monthly_alloc, credits_used_this_month, onboarding_complete)
+      VALUES (${data.email}, ${name}, ${avatarUrl}, ${referralCode}, 'free', 100, 100, 0, false)
       RETURNING *
     `);
 
     return result[0];
   }
 
-  async updateFromClerk(
-    clerkId: string,
+  async update(
+    userId: string,
     data: { email?: string; name?: string; avatarUrl?: string },
   ) {
     const setData: Record<string, unknown> = {};
@@ -54,11 +61,11 @@ export class UsersService {
     await db
       .update(users)
       .set(setData)
-      .where(eq(users.clerkId, clerkId));
+      .where(eq(users.id, userId));
   }
 
-  async deleteByClerkId(clerkId: string) {
-    await db.execute(sql`DELETE FROM users WHERE clerk_id = ${clerkId}`);
+  async delete(userId: string) {
+    await db.execute(sql`DELETE FROM users WHERE id = ${userId}`);
   }
 
   async completeOnboarding(userId: string) {

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import { NewWorkspaceModal } from '@/components/workspace/NewWorkspaceModal';
 
@@ -89,13 +88,23 @@ export default function DashboardPage() {
               credits
             </span>
           </div>
-          <UserButton
-            appearance={{
-              elements: {
-                avatarBox: { width: 32, height: 32 },
-              },
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #7C3AED, #6D5FFF)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 13,
+              fontWeight: 600,
+              color: '#FFF',
+              cursor: 'pointer',
             }}
-          />
+          >
+            U
+          </div>
         </div>
       </header>
 

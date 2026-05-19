@@ -2,7 +2,6 @@ import { createAuthedRequest, type AuthTokenGetter } from '@/lib/api/client';
 
 export interface UserProfile {
   id: string;
-  clerkId: string;
   email: string;
   name?: string | null;
   plan?: string;

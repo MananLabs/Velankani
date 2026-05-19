@@ -10,7 +10,7 @@ export class UsersController {
 
   @Get('me')
   async getMe(@Req() req: AuthenticatedRequest) {
-    const user = await this.usersService.findByClerkId(req.user.clerkId);
+    const user = await this.usersService.findById(req.user.id);
     return user;
   }
 

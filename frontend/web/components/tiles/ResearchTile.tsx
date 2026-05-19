@@ -43,14 +43,22 @@ function ResearchTile({ id, data, selected }: NodeProps<ResearchTileData>) {
     }
 
     try {
-      const token = await fetch(`${API_BASE}/tiles/workspace/${data.workspaceId}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('__clerk_db_jwt')}` },
-      }).then(() => {
-        return document.cookie
-          .split('; ')
-          .find((row) => row.startsWith('__session='))
-          ?.split('=')[1] || '';
-      }).catch(() => '');
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('vel-session='))
+        ? (() => {
+            try {
+              const session = JSON.parse(
+                decodeURIComponent(
+                  document.cookie.split('; ').find((row) => row.startsWith('vel-session='))!.split('=')[1],
+                ),
+              );
+              return session.id || '';
+            } catch {
+              return '';
+            }
+          })()
+        : '';
 
       const response = await fetch(`${API_BASE}/research`, {
         method: 'POST',

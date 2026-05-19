@@ -6,7 +6,6 @@ import { Request } from 'express';
 
 export interface AuthenticatedUser {
   id: string;
-  clerkId: string;
   email: string;
   plan: string;
   creditsRemaining: number;
