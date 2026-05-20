@@ -251,6 +251,7 @@ export default function WorkspacePage() {
     setAllDone(false);
     setStatusText('');
     setLastUserMessage(userMessage);
+    setChatHistory([]);
 
     const modelsToUse = selectedModels.length > 0 ? selectedModels : allModels.slice(0, 3);
     abortControllersRef.current = [];
@@ -669,6 +670,7 @@ export default function WorkspacePage() {
                 <button
                   key={tile.id}
                   onClick={() => {
+                    if (tile.id === resolvedTileId) return;
                     setResolvedTileId(tile.id);
                     setChatHistory([]);
                     setModelResponses([]);
