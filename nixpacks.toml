@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "npm-9_x"]
+
+[phases.install]
+cmds = ["npm ci --legacy-peer-deps"]
+
+[phases.build]
+cmds = ["npm run build --workspace=@vel-ai/shared", "npm run build --workspace=@vel-ai/api"]
+
+[start]
+cmd = "node backend/api/dist/main.js"
