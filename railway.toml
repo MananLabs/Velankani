@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "npm ci && npm run build --workspace=@vel-ai/shared && npm run build --workspace=@vel-ai/api"
+buildCommand = "npm ci --legacy-peer-deps && npm run build --workspace=@vel-ai/shared && npm run build --workspace=@vel-ai/api"
 
 [deploy]
 startCommand = "node backend/api/dist/main.js"
