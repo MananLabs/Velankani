@@ -2,16 +2,16 @@
   "name": "@vel-ai/shared",
   "version": "1.0.0",
   "private": true,
-  "main": "./dist/index.js",
+  "main": "./dist/types/index.js",
   "types": "./types/index.ts",
   "exports": {
     ".": {
       "types": "./types/index.ts",
-      "default": "./dist/index.js"
+      "default": "./dist/types/index.js"
     },
     "./types/*": {
       "types": "./types/*.ts",
-      "default": "./dist/*.js"
+      "default": "./dist/types/*.js"
     }
   },
   "scripts": {
