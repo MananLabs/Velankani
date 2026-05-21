@@ -3,7 +3,7 @@
   publish = "frontend/web/.next"
 
 [build.environment]
-  NEXT_PUBLIC_API_URL = "https://velankani.onrender.com/api/v1"
+  NEXT_PUBLIC_API_URL = "https://vel-ai-api-production.up.railway.app/api/v1"
   NODE_VERSION = "20"
 
 [[plugins]]
